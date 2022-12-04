@@ -23,6 +23,18 @@ export interface IAtomData {
   classification: TAtomClassified;
 }
 
+export interface IExtraState {
+  gridHelper: boolean;
+  axesHelper: boolean;
+  polarGridHelper: boolean;
+  movementHelper: boolean;
+  informationHelper: boolean;
+  cameraController: boolean;
+  toScale: boolean;
+}
+
+export type TAtomType = 'Dalton' | 'Thomson' | 'Rutherford' | 'Bohr';
+
 const AllAtomData: IAtomData[] = [];
 
 AtomNameArr.map((value, idx) => {
