@@ -1,51 +1,46 @@
 import * as THREE from 'three';
 import { useMemo, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
-import { useFrame } from '@react-three/fiber';
+import { GroupProps, useFrame } from '@react-three/fiber';
 import { Line, useCursor } from '@react-three/drei';
+import { useRouter } from 'next/router';
 
-export default function Logo({ route, ...props }) {
-  const router = useRouter();
+function Logo({ ...props }: GroupProps) {
   const mesh = useRef(null);
+  const router = useRouter();
   const [hovered, hover] = useState(false);
   const points = useMemo(
     () =>
-      new THREE.EllipseCurve(0, 0, 3, 1.15, 0, 2 * Math.PI, false, 0).getPoints(
+      new THREE.EllipseCurve(0, 0, 3, 1.15, 0, 2 * Math.PI, true, 0).getPoints(
         100
       ),
     []
   );
 
   useCursor(hovered);
-  useFrame((state, delta) => {
-    const t = state.clock.getElapsedTime();
-    mesh.current.rotation.y = 0;
-    mesh.current.rotation.x = 0;
+  useFrame((_state, delta) => {
+    mesh.current.rotation.y += delta / 2;
+    mesh.current.rotation.x += delta / 2;
     mesh.current.rotation.z -= delta / 2;
   });
 
   return (
     <group ref={mesh} {...props}>
-      {/* @ts-ignore */}
       <Line worldUnits points={points} color="#0000ff" lineWidth={0.15} />
-      {/* @ts-ignore */}
       <Line
-        worldUnits
         points={points}
         color="#ff0000"
-        lineWidth={0.15}
-        rotation={[0, 0, 1]}
+        lineWidth={0.85}
+        rotation={[3, 2, 10]}
       />
-      {/* @ts-ignore */}
       <Line
         worldUnits
         points={points}
         color="#00ff00"
-        lineWidth={0.15}
-        rotation={[0, 0, -1]}
+        lineWidth={0.4}
+        rotation={[1, 0, -1]}
       />
       <mesh
-        onClick={() => router.push(route)}
+        onClick={() => router.push('/show')}
         onPointerOver={() => hover(true)}
         onPointerOut={() => hover(false)}
       >
@@ -58,3 +53,5 @@ export default function Logo({ route, ...props }) {
     </group>
   );
 }
+
+export default Logo;

@@ -1,29 +1,18 @@
 import { useRef } from 'react';
-import dynamic from 'next/dynamic';
-import Header from '@components/config';
 import Layout from '@components/dom/Layout';
 import '@styles/globals.css';
+import { RecoilRoot } from 'recoil';
+import { AppProps } from 'next/app';
 
-const Scene = dynamic(() => import('@components/canvas/Scene'), { ssr: true });
-
-function App({ Component, pageProps = { title: 'index' } }) {
+function App({ Component, pageProps }: AppProps) {
   const ref = useRef();
+
   return (
-    <>
-      <Header title={pageProps.title} />
+    <RecoilRoot>
       <Layout ref={ref}>
         <Component {...pageProps} />
-        {Component?.canvas && (
-          <Scene
-            className="pointer-events-none"
-            eventSource={ref}
-            eventPrefix="client"
-          >
-            {Component.canvas(pageProps)}
-          </Scene>
-        )}
       </Layout>
-    </>
+    </RecoilRoot>
   );
 }
 
