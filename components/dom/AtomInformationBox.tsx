@@ -27,6 +27,7 @@ const AtomInformationBox = () => {
       <h1 className="text-7xl">{atom.symbol}</h1>
       <ul className="text-xs">
         <li>Symbol : {atom.symbol}</li>
+        <li>Name : {atom.name}</li>
         <li>Atomic Number : {atom.atomicNumber}</li>
         <li>Mass : {atom.atomicMass}</li>
         <li>Classification : {atom.classification}</li>

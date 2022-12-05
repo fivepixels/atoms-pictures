@@ -12,7 +12,7 @@ const Scene = ({ children, ...props }: IScene & any) => {
   const helpers = useRecoilValue(extraState);
 
   return (
-    <Canvas {...props}>
+    <Canvas camera={{ position: [10, 10, 10] }} {...props}>
       <directionalLight position={[10, 10, 10]} intensity={0.75} />
       <directionalLight position={[-10, -10, -10]} intensity={0.75} />
       <ambientLight intensity={0.13} />
