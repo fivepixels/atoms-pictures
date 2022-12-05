@@ -26,9 +26,7 @@ const AtomTypeBox = () => {
       }}
     >
       <ul className="flex flex-col items-end justify-center text-right space-y-2">
-        {atomTypeArr.map((value, idx) => (
-          <AtomTypeButton key={idx} atomTypeString={value} />
-        ))}
+        <AtomTypeButton atomTypeString={"Bohr"} />
       </ul>
     </BasicInformationBox>
   );

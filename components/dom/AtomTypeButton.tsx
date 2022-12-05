@@ -24,15 +24,14 @@ const AtomTypeButton = ({
 
   return (
     <button
-      className={`px-2 ${
-        atomType === atomTypeString
-          ? 'text-black bg-white hover:text-white hover:bg-transparent hover:border-slate-400'
-          : 'text-white bg-transparent'
-      } border-2 border-slate-400 hover:bg-white hover:text-black hover:border-black hover:scale-95 transition-colors py-1.5 rounded-md`}
+      className={`px-2 ${atomType === atomTypeString
+        ? 'text-black bg-white hover:text-white hover:bg-transparent hover:border-slate-400'
+        : 'text-white bg-transparent'
+        } border-2 border-slate-400 hover:bg-white hover:text-black hover:border-black hover:scale-95 transition-colors py-1.5 rounded-md`}
       onClick={onButtonClick}
       {...props}
     >
-      {atomTypeString}
+      Atom Model : {atomTypeString}
     </button>
   );
 };

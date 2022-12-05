@@ -50,6 +50,24 @@ export const particleTypeArr: TParticleType[] = [
 export const bohrEnergyLevel = [];
 export const bohrRadiuses = [4.4];
 
+export const electronPositions = (radius: number, constant: number): number[][] => {
+  const diagonalPosition = Math.sqrt(radius) * constant;
+
+  const positionArrs = [
+    [radius, 0, 0],
+    [-radius, 0, 0],
+    [0, 0, radius],
+    [0, 0, -radius],
+    [diagonalPosition, 0, diagonalPosition],
+    [-diagonalPosition, 0, -diagonalPosition],
+    [-diagonalPosition, 0, diagonalPosition],
+    [diagonalPosition, 0, -diagonalPosition],
+    [-diagonalPosition, 0, diagonalPosition],
+  ];
+
+  return positionArrs;
+};
+
 const AllAtomData: IAtomData[] = [];
 
 AtomNameArr.map((value, idx) => {
