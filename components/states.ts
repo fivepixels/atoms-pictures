@@ -20,8 +20,8 @@ const atomState = atom<IAtomData>({
 });
 
 const atomTypeState = atom<TAtomType>({
-  key: 'atom-type-data',
-  default: 'Bohr',
+  key: 'atoms-type-data',
+  default: 'Dalton',
   effects_UNSTABLE: [persistAtom]
 });
 

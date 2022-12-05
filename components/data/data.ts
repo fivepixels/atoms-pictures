@@ -34,6 +34,21 @@ export interface IExtraState {
 }
 
 export type TAtomType = 'Dalton' | 'Thomson' | 'Rutherford' | 'Bohr';
+export type TParticleType = 'Proton' | 'Neutron' | 'Electron';
+export const atomTypeArr: TAtomType[] = [
+  'Dalton',
+  'Thomson',
+  'Rutherford',
+  'Bohr'
+];
+export const particleTypeArr: TParticleType[] = [
+  'Proton',
+  'Neutron',
+  'Electron'
+];
+
+export const bohrEnergyLevel = [];
+export const bohrRadiuses = [4.4];
 
 const AllAtomData: IAtomData[] = [];
 
