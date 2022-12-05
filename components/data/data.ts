@@ -62,7 +62,7 @@ AtomNameArr.map((value, idx) => {
   });
 });
 
-type TFindBy = 'name' | 'symbol' | 'classification';
+type TFindBy = 'name' | 'symbol' | 'classification' | 'number';
 
 interface IFindAtomBy {
   by: TFindBy;
@@ -101,6 +101,20 @@ export const findAtomBy = ({ by, content }: IFindAtomBy): IAtomData[] => {
     AtomClassificationArr.map((value, idx) =>
       findAtomFilter(value, idx, content, returnedAtomsArr)
     );
+  } else if (by === 'number') {
+    if (content <= 0 || content >= 119 || typeof content === 'string') {
+      return findAtomBy({
+        by: 'number',
+        content: 1
+      });
+    }
+    returnedAtomsArr.push({
+      name: AtomNameArr[content - 1],
+      atomicNumber: content,
+      atomicMass: AtomicMassArr[content - 1],
+      symbol: AtomSymbolArr[content - 1],
+      classification: AtomClassificationArr[content - 1]
+    });
   }
 
   return returnedAtomsArr;
