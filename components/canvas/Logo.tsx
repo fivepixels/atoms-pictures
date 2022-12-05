@@ -3,8 +3,11 @@ import { useMemo, useRef, useState } from 'react';
 import { GroupProps, useFrame } from '@react-three/fiber';
 import { Line, useCursor } from '@react-three/drei';
 import { useRouter } from 'next/router';
+import { useRecoilValue } from 'recoil';
+import { extraState } from '@components/states';
 
 function Logo({ ...props }: GroupProps) {
+  const helper = useRecoilValue(extraState);
   const mesh = useRef(null);
   const router = useRouter();
   const [hovered, hover] = useState(false);
@@ -18,9 +21,11 @@ function Logo({ ...props }: GroupProps) {
 
   useCursor(hovered);
   useFrame((_state, delta) => {
-    mesh.current.rotation.y += delta / 2;
-    mesh.current.rotation.x += delta / 2;
-    mesh.current.rotation.z -= delta / 2;
+    if (helper.movementHelper) {
+      mesh.current.rotation.y += delta / 2;
+      mesh.current.rotation.x += delta / 2;
+      mesh.current.rotation.z -= delta / 2;
+    }
   });
 
   return (
