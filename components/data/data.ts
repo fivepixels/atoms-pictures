@@ -47,25 +47,46 @@ export const particleTypeArr: TParticleType[] = [
   'Electron'
 ];
 
-export const bohrEnergyLevel = [];
+export const bohrEnergyLevel = [2, 8, 8, 18, 18, 32, 32];
 export const bohrRadiuses = [4.4];
 
-export const electronPositions = (radius: number, constant: number): number[][] => {
-  const diagonalPosition = Math.sqrt(radius) * constant;
+export const getAllCase = (theNumber: number) => {
+  return [
+    [theNumber, 0, theNumber],
+    [-theNumber, 0, -theNumber],
+    [-theNumber, 0, theNumber],
+    [theNumber, 0, -theNumber]
+  ];
+};
+
+type TDevidedBy = 8 | 18 | 32;
+export const electronPositions = (
+  radius: number,
+  devidedBy?: TDevidedBy
+): number[][] => {
+  // Helped by Mr. Happy in Bodwell and also Happy Tutor.
+  if (!devidedBy) devidedBy = 8;
+
+  const constant = Math.sqrt(2) / 2;
+  const diagonalPosition = radius * constant;
 
   const positionArrs = [
     [radius, 0, 0],
     [-radius, 0, 0],
     [0, 0, radius],
-    [0, 0, -radius],
-    [diagonalPosition, 0, diagonalPosition],
-    [-diagonalPosition, 0, -diagonalPosition],
-    [-diagonalPosition, 0, diagonalPosition],
-    [diagonalPosition, 0, -diagonalPosition],
-    [-diagonalPosition, 0, diagonalPosition],
+    [0, 0, -radius]
   ];
 
-  return positionArrs;
+  positionArrs.push(...getAllCase(diagonalPosition));
+
+  if (devidedBy === 8) {
+    return positionArrs;
+  } else if (devidedBy === 18) {
+    const constant = Math.sqrt(4) / 2;
+    const diagonalPosition = radius * constant;
+
+    positionArrs.push([]);
+  }
 };
 
 const AllAtomData: IAtomData[] = [];
@@ -136,6 +157,35 @@ export const findAtomBy = ({ by, content }: IFindAtomBy): IAtomData[] => {
   }
 
   return returnedAtomsArr;
+};
+
+interface IGetNumberOfElectrons {
+  atomicNumber: number;
+}
+
+export const getNumberOfElectrons = ({
+  atomicNumber
+}: IGetNumberOfElectrons): number[] => {
+  let atomicNumberNotConstant = atomicNumber;
+  const returnedElectronsArr: number[] = [];
+
+  bohrEnergyLevel.map((_value, _idx) => {});
+
+  for (let i = 0; i < bohrEnergyLevel.length; i++) {
+    const value = bohrEnergyLevel[i];
+
+    if (atomicNumberNotConstant <= 0) {
+      break;
+    } else if (atomicNumberNotConstant > value) {
+      returnedElectronsArr.push(value);
+      atomicNumberNotConstant = atomicNumberNotConstant - value;
+    } else if (atomicNumberNotConstant <= value) {
+      returnedElectronsArr.push(atomicNumberNotConstant);
+      break;
+    }
+  }
+
+  return returnedElectronsArr;
 };
 
 export default AllAtomData;

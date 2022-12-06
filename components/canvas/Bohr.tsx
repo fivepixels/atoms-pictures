@@ -1,87 +1,82 @@
-import { useEffect, useRef } from 'react';
-import { Group, Mesh } from 'three';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { Group } from 'three';
 import { useFrame } from '@react-three/fiber';
-import { electronPositions } from '@components/data/data';
+import { electronPositions, getNumberOfElectrons } from '@components/data/data';
+import { useRecoilValue } from 'recoil';
+import { extraState } from '@components/states';
 
 interface IThomsonAtomModel {
   atomicNumber: number;
 }
 
-interface IRadius {
-  radius: number;
-  constant: number;
-}
-
 const BohrAtomModel = ({ atomicNumber }: IThomsonAtomModel) => {
+  const helpers = useRecoilValue(extraState);
   const groupMesh = useRef<Group>(null);
-  const electronMesh = useRef<Mesh>(null);
-  // const radius = [6.2, 12.5, 18.75];
-  const radius: IRadius[] = [
-    {
-      radius: 6.2,
-      constant: 0,
-    },
-    {
-      radius: 12.5,
-      constant: 2.5
-    },
-    {
-      radius: 18.4,
-      constant: 3.1,
-    },
-    {
-      radius: 20,
-      constant: 4,
+  const energyLevelGroupsMesh: MutableRefObject<Group>[] = [];
+
+  const electronNumberForEnergyLevel = getNumberOfElectrons({ atomicNumber });
+  const radius = helpers.toScale ? [187, 375, 560] : [4.9, 10, 15];
+
+  useFrame((_state, delta) => {
+    if (helpers.movementHelper) {
+      groupMesh.current.rotation.y += delta / 4;
     }
-  ];
+  });
 
   useEffect(() => {
-    groupMesh.current.children.map((value, idx) => {
-      if (idx === 0) {
-        return;
-      }
+    energyLevelGroupsMesh.map((energyLevelMesh, index) => {
+      const energyLevel = index + 1;
+      const currentEnergyLevelGroup = energyLevelGroupsMesh[index];
 
-      // n = 1
-      if (idx === 1) {
-        value.position.set(radius[0].radius, 0, 0);
-      } else if (idx === 2) {
-        value.position.set(-radius[0].radius, 0, 0);
-      }
+      currentEnergyLevelGroup.current.children.map(
+        (electronMesh, electronIndex) => {
+          const currentRadius = radius[index];
 
-      // 2 <= n <= 8
-      for (let n = 2; n <= 4; n++) {
-        const firstOrder = 8 * (n-1) - 5;
-        if (firstOrder <= idx && idx <= firstOrder + 7) {
-         electronPositions(radius[n-1].radius, radius[n-1].constant).map((result: number[], index: number) => {
-            console.log(n);
-            console.log(radius[n-1]);
-            console.log(idx);
-            console.log(index);
-            console.log(idx - 3 === index);
-            if (idx - 3 === index) {
-              value.position.set(result[0], 0, result[2]);
+          if (energyLevel === 1) {
+            if (electronIndex === 0) {
+              electronMesh.position.set(currentRadius, 0, 0);
+            } else if (electronIndex === 1) {
+              electronMesh.position.set(-currentRadius, 0, 0);
             }
-          })
+          } else if (2 <= energyLevel && energyLevel <= 3) {
+            electronPositions(currentRadius).map(
+              (result: number[], electronIdx) => {
+                if (electronIndex === electronIdx) {
+                  electronMesh.position.set(result[0], 0, result[2]);
+                }
+              }
+            );
+          } else if (4 <= energyLevel && energyLevel <= 5) {
+          }
         }
-      }
+      );
     });
-  }, [groupMesh]);
-
-  useFrame((_state, _delta) => {
-  });
+  }, [atomicNumber]);
 
   return (
     <group ref={groupMesh}>
       <mesh>
-        <sphereGeometry args={[2, 200, 200]} />
+        <sphereGeometry args={[helpers.toScale ? 30 : 1, 200, 200]} />
         <meshPhysicalMaterial roughness={0} color="#de5147" />
       </mesh>
-      {[...Array(atomicNumber)].map((_value, idx) => (
-        <mesh key={idx} ref={electronMesh}>
-          <sphereGeometry args={[0.2, 200, 200]} />
-          <meshPhysicalMaterial roughness={0} />
-        </mesh>
-      ))}
+      {electronNumberForEnergyLevel.map((value, index) => {
+        const energyGroupMesh = useRef<Group>(null);
+        energyLevelGroupsMesh.push(energyGroupMesh);
+
+        return (
+          <group key={index} ref={energyGroupMesh}>
+            {[...Array(value)].map((_value, idx) => (
+              <mesh key={idx}>
+                <sphereGeometry
+                  args={[helpers.toScale ? 30 / 1840 : 0.2, 200, 200]}
+                />
+                <meshPhysicalMaterial roughness={0} />
+              </mesh>
+            ))}
+          </group>
+        );
+      })}
+      ;
     </group>
   );
 };

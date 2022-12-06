@@ -26,7 +26,7 @@ const AtomTypeBox = () => {
       }}
     >
       <ul className="flex flex-col items-end justify-center text-right space-y-2">
-        <AtomTypeButton atomTypeString={"Bohr"} />
+        <AtomTypeButton atomTypeString={'Bohr'} />
       </ul>
     </BasicInformationBox>
   );
