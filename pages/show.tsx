@@ -20,7 +20,6 @@ const Show: NextPage = () => {
     setCurrentAtom(atom);
   }, [atom]);
 
-        fn: () => {
   useKeyboard([
     {
       key: '/',
