@@ -8,11 +8,17 @@ import Atom from '@components/canvas/Atom';
 import AtomTypeBox from '@components/dom/AtomTypeBox';
 import useKeyboard from '@components/dom/useKeyboard';
 import { findAtomBy, IAtomData } from '@components/data/data';
+import Links from '@components/dom/Links';
+import { useEffect } from 'react';
 
 const Show: NextPage = () => {
   const [currentAtom, setCurrentAtom] = useRecoilState(atomState);
   let atom: IAtomData = currentAtom;
   const helper = useRecoilValue(extraState);
+
+  useEffect(() => {
+    setCurrentAtom(atom);
+  }, [atom]);
 
   useKeyboard(
     [
@@ -61,6 +67,7 @@ const Show: NextPage = () => {
       {helper.informationHelper ? <AtomInformationBox /> : null}
       <HelperController />
       <AtomTypeBox />
+      <Links />
       <CanvasLayout>
         <Atom />
       </CanvasLayout>

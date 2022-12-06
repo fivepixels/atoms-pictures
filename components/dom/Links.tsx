@@ -16,8 +16,19 @@ const Links = () => {
           </LinkButton>
         </li>
         <li>
-          <LinkButton href={'https://github.com/cattynip/atoms-pictures'}>
+          <LinkButton
+            href={'https://github.com/cattynip/atoms-pictures'}
+            target="_blank"
+          >
             <span>Source Code</span>
+          </LinkButton>
+        </li>
+        <li>
+          <LinkButton
+            href={'https://github.com/cattynip/atoms-pictures/issues/new'}
+            target="_blank"
+          >
+            <span>Make a New Issue</span>
           </LinkButton>
         </li>
       </ul>
