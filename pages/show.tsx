@@ -20,47 +20,45 @@ const Show: NextPage = () => {
     setCurrentAtom(atom);
   }, [atom]);
 
-  useKeyboard(
-    [
-      {
-        key: '/',
         fn: () => {
-          console.log('This is a command for searching');
-        }
-      },
-      {
-        key: ['ArrowRight', 'd', 'l'],
-        fn: () => {
-          atom = findAtomBy({
+  useKeyboard([
+    {
+      key: '/',
+      fn: () => {
+        console.log('This is a command for searching');
+      }
+    },
+    {
+      key: ['ArrowRight', 'd', 'l'],
+      fn: () => {
+        atom = findAtomBy({
+          by: 'number',
+          content: atom.atomicNumber + 1
+        })[0];
+        setCurrentAtom(
+          findAtomBy({
             by: 'number',
             content: atom.atomicNumber + 1
-          })[0];
-          setCurrentAtom(
-            findAtomBy({
-              by: 'number',
-              content: atom.atomicNumber + 1
-            })[0]
-          );
-        }
-      },
-      {
-        key: ['ArrowLeft', 'a', 'j'],
-        fn: () => {
-          atom = findAtomBy({
+          })[0]
+        );
+      }
+    },
+    {
+      key: ['ArrowLeft', 'a', 'j'],
+      fn: () => {
+        atom = findAtomBy({
+          by: 'number',
+          content: atom.atomicNumber - 1
+        })[0];
+        setCurrentAtom(
+          findAtomBy({
             by: 'number',
             content: atom.atomicNumber - 1
-          })[0];
-          setCurrentAtom(
-            findAtomBy({
-              by: 'number',
-              content: atom.atomicNumber - 1
-            })[0]
-          );
-        }
+          })[0]
+        );
       }
-    ],
-    false
-  );
+    }
+  ]);
 
   return (
     <div>
