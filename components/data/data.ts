@@ -47,8 +47,7 @@ export const particleTypeArr: TParticleType[] = [
   'Electron'
 ];
 
-export const bohrEnergyLevel = [2, 8, 8, 18, 18, 32, 32];
-export const bohrRadiuses = [4.4];
+export const bohrEnergyLevel = [2, 8, 8];
 
 export const getAllCase = (theNumber: number) => {
   return [
