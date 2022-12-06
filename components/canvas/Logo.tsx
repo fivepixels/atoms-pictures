@@ -29,7 +29,7 @@ function Logo({ ...props }: GroupProps) {
   });
 
   return (
-    <group ref={mesh} {...props}>
+    <group ref={mesh} {...props} scale={2}>
       <Line worldUnits points={points} color="#0000ff" lineWidth={0.15} />
       <Line
         points={points}
