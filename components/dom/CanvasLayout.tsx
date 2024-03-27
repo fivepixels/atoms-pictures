@@ -1,4 +1,4 @@
-import Scene from '@components/canvas/Scene';
+import Scene from "@components/canvas/Scene";
 
 interface ICanvasLayout {
   children: React.ReactNode;

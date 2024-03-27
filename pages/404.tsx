@@ -1,8 +1,7 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const Logo = dynamic(() => import('@components/canvas/Logo'), { ssr: false });
+const Logo = dynamic(() => import("@components/canvas/Logo"), { ssr: false });
 
-// Dom components go here
 function Page() {
   return (
     <div>
@@ -14,7 +13,7 @@ function Page() {
 Page.canvas = () => <Logo scale={1.2} />;
 
 export async function getStaticProps() {
-  return { props: { title: 'Atoms Pictures - 404' } };
+  return { props: { title: "Atoms Pictures - 404" } };
 }
 
 export default Page;

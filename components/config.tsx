@@ -1,9 +1,9 @@
-import Head from 'next/head';
+import Head from "next/head";
 
-const titleDefault = 'Atoms Pictures';
-const url = 'https://react-three-next.vercel.app/';
-const description = 'The best way to picture atoms';
-const author = 'Cattynip <cattynip.cattynip@gmail.com>';
+const titleDefault = "Atoms Pictures";
+const url = "https://react-three-next.vercel.app/";
+const description = "The best way to picture atoms";
+const author = "Cattynip <cattynip.cattynip@gmail.com>";
 
 export default function Header({ title = titleDefault }) {
   return (
@@ -22,7 +22,7 @@ export default function Header({ title = titleDefault }) {
       <meta name="og:title" content={title} />
       <meta name="og:type" content="site" />
       <meta name="og:url" content={url} />
-      <meta name="og:image" content={'/icons/share.png'} />
+      <meta name="og:image" content={"/icons/share.png"} />
       <meta name="og:site_name" content={title} />
       <meta name="og:description" content={description} />
       <meta

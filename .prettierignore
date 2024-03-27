@@ -1,8 +1,7 @@
-build/*
-dist/*
-public/*
-.next/*
-node_modules/*
-package.json
-*.log
-templates/
+node_modules
+build
+dist
+
+next.config.js
+postcss.config.js
+tailwind.config.js

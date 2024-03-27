@@ -1,8 +1,8 @@
-import { useRef } from 'react';
-import Layout from '@components/dom/Layout';
-import '@styles/globals.css';
-import { RecoilRoot } from 'recoil';
-import { AppProps } from 'next/app';
+import { useRef } from "react";
+import Layout from "@components/dom/Layout";
+import "@styles/globals.css";
+import { RecoilRoot } from "recoil";
+import { AppProps } from "next/app";
 
 function App({ Component, pageProps }: AppProps) {
   const ref = useRef();

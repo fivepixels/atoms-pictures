@@ -1,19 +1,19 @@
-import AtomNameArr from './atomNames';
-import AtomicMassArr from './atomicMasses';
-import AtomSymbolArr from './atomSymbols';
-import AtomClassificationArr from './atomClassification';
+import AtomNameArr from "./atomNames";
+import AtomicMassArr from "./atomicMasses";
+import AtomSymbolArr from "./atomSymbols";
+import AtomClassificationArr from "./atomClassification";
 
 export type TAtomClassified =
-  | 'Alkali Metals'
-  | 'Alkaline-earth Metals'
-  | 'Transition Metals'
-  | 'Metal'
-  | 'Lanthanide'
-  | 'Metalloid'
-  | 'Non-metal'
-  | 'Halogen'
-  | 'Noble Gas'
-  | 'Actinide';
+  | "Alkali Metals"
+  | "Alkaline-earth Metals"
+  | "Transition Metals"
+  | "Metal"
+  | "Lanthanide"
+  | "Metalloid"
+  | "Non-metal"
+  | "Halogen"
+  | "Noble Gas"
+  | "Actinide";
 
 export interface IAtomData {
   name: string;
@@ -33,18 +33,18 @@ export interface IExtraState {
   toScale: boolean;
 }
 
-export type TAtomType = 'Dalton' | 'Thomson' | 'Rutherford' | 'Bohr';
-export type TParticleType = 'Proton' | 'Neutron' | 'Electron';
+export type TAtomType = "Dalton" | "Thomson" | "Rutherford" | "Bohr";
+export type TParticleType = "Proton" | "Neutron" | "Electron";
 export const atomTypeArr: TAtomType[] = [
-  'Dalton',
-  'Thomson',
-  'Rutherford',
-  'Bohr'
+  "Dalton",
+  "Thomson",
+  "Rutherford",
+  "Bohr"
 ];
 export const particleTypeArr: TParticleType[] = [
-  'Proton',
-  'Neutron',
-  'Electron'
+  "Proton",
+  "Neutron",
+  "Electron"
 ];
 
 export const bohrEnergyLevel = [2, 8, 8];
@@ -81,8 +81,8 @@ export const electronPositions = (
   if (devidedBy === 8) {
     return positionArrs;
   } else if (devidedBy === 18) {
-    const constant = Math.sqrt(4) / 2;
-    const diagonalPosition = radius * constant;
+    // const constant = Math.sqrt(4) / 2;
+    // const diagonalPosition = radius * constant;
 
     positionArrs.push([]);
   }
@@ -100,7 +100,7 @@ AtomNameArr.map((value, idx) => {
   });
 });
 
-type TFindBy = 'name' | 'symbol' | 'classification' | 'number';
+type TFindBy = "name" | "symbol" | "classification" | "number";
 
 interface IFindAtomBy {
   by: TFindBy;
@@ -127,22 +127,22 @@ export const findAtomFilter = (
 export const findAtomBy = ({ by, content }: IFindAtomBy): IAtomData[] => {
   const returnedAtomsArr: IAtomData[] = [];
 
-  if (by === 'name') {
+  if (by === "name") {
     AtomNameArr.map((value, idx) =>
       findAtomFilter(value, idx, content, returnedAtomsArr)
     );
-  } else if (by === 'symbol') {
+  } else if (by === "symbol") {
     AtomSymbolArr.map((value, idx) =>
       findAtomFilter(value, idx, content, returnedAtomsArr)
     );
-  } else if (by === 'classification') {
+  } else if (by === "classification") {
     AtomClassificationArr.map((value, idx) =>
       findAtomFilter(value, idx, content, returnedAtomsArr)
     );
-  } else if (by === 'number') {
-    if (content <= 0 || content >= 119 || typeof content === 'string') {
+  } else if (by === "number") {
+    if (content <= 0 || content >= 119 || typeof content === "string") {
       return findAtomBy({
-        by: 'number',
+        by: "number",
         content: 1
       });
     }
@@ -168,7 +168,7 @@ export const getNumberOfElectrons = ({
   let atomicNumberNotConstant = atomicNumber;
   const returnedElectronsArr: number[] = [];
 
-  bohrEnergyLevel.map((_value, _idx) => {});
+  // bohrEnergyLevel.map((_value, _idx) => {});
 
   for (let i = 0; i < bohrEnergyLevel.length; i++) {
     const value = bohrEnergyLevel[i];

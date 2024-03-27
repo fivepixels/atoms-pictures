@@ -1,6 +1,6 @@
-import Header from '@components/config';
-import React, { useRef, forwardRef } from 'react';
-import { mergeRefs } from 'react-merge-refs';
+import Header from "@components/config";
+import React, { useRef, forwardRef } from "react";
+import { mergeRefs } from "react-merge-refs";
 
 interface ILayout {
   children: React.ReactNode;

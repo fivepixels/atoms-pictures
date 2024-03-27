@@ -1,8 +1,8 @@
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Preload } from '@react-three/drei';
-import React, { useRef } from 'react';
-import { useRecoilValue } from 'recoil';
-import { extraState } from '@components/states';
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Preload } from "@react-three/drei";
+import React, { useRef } from "react";
+import { useRecoilValue } from "recoil";
+import { extraState } from "@components/states";
 
 interface IScene {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ const Scene = ({ children, ...props }: IScene & any) => {
       ref={canvasRef}
       camera={{
         position: [20, 20, 20],
-        type: 'PerspectiveCamera',
+        type: "PerspectiveCamera",
         far: 9000000
       }}
       {...props}

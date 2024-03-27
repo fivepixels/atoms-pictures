@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 interface IUseKeyboard {
   key: string | string[];
@@ -6,14 +6,15 @@ interface IUseKeyboard {
 }
 
 const useKeyboard = (infor: IUseKeyboard[]) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const keydown = (event: KeyboardEvent) => {
     infor.map(value => {
-      if (typeof value.key === 'string' && event.key === value.key) {
+      if (typeof value.key === "string" && event.key === value.key) {
         value.fn();
         value.fn();
         value.fn();
         value.fn();
-      } else if (typeof value.key === 'object') {
+      } else if (typeof value.key === "object") {
         value.key.map(keyValue => {
           if (keyValue === event.key) {
             value.fn();
@@ -27,8 +28,8 @@ const useKeyboard = (infor: IUseKeyboard[]) => {
   };
 
   useEffect(() => {
-    document.addEventListener('keydown', keydown);
-  }, []);
+    document.addEventListener("keydown", keydown);
+  }, [keydown]);
 };
 
 export default useKeyboard;

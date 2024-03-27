@@ -1,15 +1,15 @@
-import { findAtomBy, IAtomData } from '@components/data/data';
-import { atomState } from '@components/states';
-import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import BasicInformationBox from './BasicInformationBox';
+import { findAtomBy, IAtomData } from "@components/data/data";
+import { atomState } from "@components/states";
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import BasicInformationBox from "./BasicInformationBox";
 
 const AtomInformationBox = () => {
-  const [currentAtom, _setCurrentAtom] = useRecoilState(atomState);
+  const [currentAtom] = useRecoilState(atomState);
   const [atom, setAtom] = useState<IAtomData>(
     findAtomBy({
-      by: 'symbol',
-      content: 'H'
+      by: "symbol",
+      content: "H"
     })[0]
   );
 
@@ -20,8 +20,8 @@ const AtomInformationBox = () => {
   return (
     <BasicInformationBox
       direction={{
-        topBottom: 'bottom',
-        leftRight: 'left'
+        topBottom: "bottom",
+        leftRight: "left"
       }}
     >
       <h1 className="text-7xl">{atom.symbol}</h1>

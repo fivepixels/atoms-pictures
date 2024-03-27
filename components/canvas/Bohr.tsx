@@ -1,9 +1,9 @@
-import { useRef } from 'react';
-import { Group } from 'three';
-import { useFrame } from '@react-three/fiber';
-import { electronPositions, getNumberOfElectrons } from '@components/data/data';
-import { useRecoilValue } from 'recoil';
-import { extraState } from '@components/states';
+import { useRef } from "react";
+import { Group } from "three";
+import { useFrame } from "@react-three/fiber";
+import { electronPositions, getNumberOfElectrons } from "@components/data/data";
+import { useRecoilValue } from "recoil";
+import { extraState } from "@components/states";
 
 interface IThomsonAtomModel {
   atomicNumber: number;
@@ -45,6 +45,7 @@ const BohrAtomModel = ({ atomicNumber }: IThomsonAtomModel) => {
             }
           );
         } else if (4 <= energyLevel && energyLevel <= 5) {
+          return;
         }
       });
     });

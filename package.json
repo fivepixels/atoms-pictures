@@ -1,10 +1,28 @@
 {
   "name": "atoms-pictures",
-  "description": "Our mission is to provide the best way to Picture Atoms.",
-  "version": "2.0.0",
-  "author": "Cattynip <cattynip.cattynip@gmail.com>",
-  "license": "MIT",
+  "description": "The most beautiful way to capture Atoms.",
+  "version": "1.0.0",
+  "type": "module",
   "private": true,
+  "license": "MIT",
+  "homepage": "https://atoms-pictures.vercel.app",
+  "keywords": [
+    "atoms",
+    "next"
+  ],
+  "author": {
+    "name": "Seol SO",
+    "url": "https://fivepixels.dev",
+    "email": "hi@fivepixels.dev"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/fivepixels"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fivepixels/atoms-pictures"
+  },
   "engines": {
     "node": ">=14"
   },
@@ -33,24 +51,29 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.3.1",
+    "@types/bun": "latest",
     "@types/node": "^18.11.10",
     "@types/react": "^18.0.25",
     "@types/three": "^0.146.0",
-    "@typescript-eslint/typescript-estree": "^5.45.0",
+    "@typescript-eslint/eslint-plugin": "^7.3.0",
+    "@typescript-eslint/parser": "^7.3.0",
     "autoprefixer": "^10.4.12",
-    "eslint": "^8.24.0",
+    "eslint": "^8.57.0",
     "eslint-config-next": "^13.0.1",
-    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-tailwind": "^0.2.1",
     "file-loader": "^6.2.0",
     "glslify": "^7.1.1",
     "glslify-loader": "^2.0.0",
     "husky": "^8.0.2",
     "postcss": "^8.4.18",
-    "prettier": "^2.7.1",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.12",
     "raw-loader": "^4.0.2",
     "tailwindcss": "^3.2.1",
-    "typescript": "^4.9.3",
     "url-loader": "^4.1.1"
+  },
+  "peerDependencies": {
+    "typescript": "^4.9.3"
   }
 }

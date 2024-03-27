@@ -1,5 +1,7 @@
-.next
+node_modules
+build
 dist
-node_modules/
-templates/
-public/
+
+next.config.js
+postcss.config.js
+tailwind.config.js

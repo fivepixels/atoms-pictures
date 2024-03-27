@@ -1,7 +1,7 @@
-import { extraState } from '@components/states';
-import { ChangeEvent } from 'react';
-import { useRecoilState } from 'recoil';
-import BasicInformationBox from './BasicInformationBox';
+import { extraState } from "@components/states";
+import { ChangeEvent } from "react";
+import { useRecoilState } from "recoil";
+import BasicInformationBox from "./BasicInformationBox";
 
 const HelperController = () => {
   const [helperState, setHelperState] = useRecoilState(extraState);
@@ -13,7 +13,7 @@ const HelperController = () => {
     setHelperState(prev => {
       const returnObject = { ...prev };
 
-      Object.keys(returnObject).map((key, _idx) => {
+      Object.keys(returnObject).map(key => {
         if (key === currentValue) {
           returnObject[key] = checked;
         }
@@ -26,8 +26,8 @@ const HelperController = () => {
   return (
     <BasicInformationBox
       direction={{
-        topBottom: 'top',
-        leftRight: 'left'
+        topBottom: "top",
+        leftRight: "left"
       }}
     >
       <ul>

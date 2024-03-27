@@ -1,10 +1,10 @@
-import * as THREE from 'three';
-import { useMemo, useRef, useState } from 'react';
-import { GroupProps, useFrame } from '@react-three/fiber';
-import { Line, useCursor } from '@react-three/drei';
-import { useRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
-import { extraState } from '@components/states';
+import * as THREE from "three";
+import { useMemo, useRef, useState } from "react";
+import { GroupProps, useFrame } from "@react-three/fiber";
+import { Line, useCursor } from "@react-three/drei";
+import { useRouter } from "next/router";
+import { useRecoilValue } from "recoil";
+import { extraState } from "@components/states";
 
 function Logo({ ...props }: GroupProps) {
   const helper = useRecoilValue(extraState);
@@ -45,14 +45,14 @@ function Logo({ ...props }: GroupProps) {
         rotation={[1, 0, -1]}
       />
       <mesh
-        onClick={() => router.push('/show')}
+        onClick={() => router.push("/show")}
         onPointerOver={() => hover(true)}
         onPointerOut={() => hover(false)}
       >
         <sphereGeometry args={[0.55, 64, 64]} />
         <meshPhysicalMaterial
           roughness={0}
-          color={hovered ? 'hotpink' : '#ffffff'}
+          color={hovered ? "hotpink" : "#ffffff"}
         />
       </mesh>
     </group>

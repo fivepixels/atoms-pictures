@@ -1,10 +1,10 @@
 module.exports = {
-  mode: 'jit',
+  mode: "jit",
   content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}'
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}"
   ], // remove unused styles in production
-  darkMode: 'media', // or 'media' or 'class'
+  darkMode: "media", // or 'media' or 'class'
   theme: {
     extend: {}
   },

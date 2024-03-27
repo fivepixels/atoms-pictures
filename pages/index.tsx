@@ -1,6 +1,6 @@
-import type { NextPage } from 'next';
-import Logo from '@components/canvas/Logo';
-import CanvasLayout from '@components/dom/CanvasLayout';
+import type { NextPage } from "next";
+import Logo from "@components/canvas/Logo";
+import CanvasLayout from "@components/dom/CanvasLayout";
 
 const Page: NextPage = () => {
   return (

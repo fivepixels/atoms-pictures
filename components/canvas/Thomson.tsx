@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { Group } from 'three';
+import { useEffect, useRef } from "react";
+import { Group } from "three";
 
 interface IThomsonAtomModel {
   atomicNumber: number;
@@ -8,11 +8,14 @@ interface IThomsonAtomModel {
 const ThomsonAtomModel = ({ atomicNumber }: IThomsonAtomModel) => {
   const groupMesh = useRef<Group>(null);
 
+  useEffect(() => {}, [atomicNumber]);
+
   useEffect(() => {
     groupMesh.current.children.map((value, idx) => {
       if (idx === 0) {
         return;
       } else {
+        return;
       }
     });
   }, [groupMesh]);
